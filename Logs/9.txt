@@ -1,0 +1,91 @@
+SQLite: Microsoft.Data.Sqlite, Version=9.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+EF Core: Microsoft.EntityFrameworkCore, Version=9.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+EF Core SQLite: Microsoft.EntityFrameworkCore.Sqlite, Version=9.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+info: 3/02/2025 18:21:45.749 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (62ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE IF EXISTS entity;
+      CREATE TABLE IF NOT EXISTS entity (id INT NOT NULL PRIMARY KEY);
+
+      INSERT INTO entity (id) VALUES (1);
+      INSERT INTO entity (id) VALUES (2);
+      INSERT INTO entity (id) VALUES (3);
+
+SELECT e.Id
+info: 3/02/2025 18:21:45.928 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id" AS "Id"
+      FROM "entity" AS "e"
+[{"Id":1},{"Id":2},{"Id":3}]
+
+SELECT e.Id, setOfInt
+info: 3/02/2025 18:21:46.018 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (2ms) [Parameters=[@__setOfInt_0='?' (Size = 6)], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id" AS "Id", @__setOfInt_0 AS "setOfInt"
+      FROM "entity" AS "e"
+fail: 3/02/2025 18:21:46.052 CoreEventId.QueryIterationFailed[10100] (Microsoft.EntityFrameworkCore.Query)
+      An exception occurred while iterating over the results of a query for context type 'ConsoleApp.Db'.
+      System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.Int32]' to type 'System.Collections.Generic.IList`1[System.Int32]'.
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfStructsReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+         at lambda_method10(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+         at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.Int32]' to type 'System.Collections.Generic.IList`1[System.Int32]'.
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfStructsReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+   at lambda_method10(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ConsoleApp.Program.Main() in C:\Users\ravindUwU\Projects\dotnet-efcore-35568\ConsoleApp\Program.cs:line 79
+
+SELECT e.Id, setOfDouble
+info: 3/02/2025 18:21:46.100 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (0ms) [Parameters=[@__setOfDouble_0='?' (Size = 6)], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id" AS "Id", @__setOfDouble_0 AS "setOfDouble"
+      FROM "entity" AS "e"
+fail: 3/02/2025 18:21:46.109 CoreEventId.QueryIterationFailed[10100] (Microsoft.EntityFrameworkCore.Query)
+      An exception occurred while iterating over the results of a query for context type 'ConsoleApp.Db'.
+      System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.Double]' to type 'System.Collections.Generic.IList`1[System.Double]'.
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfStructsReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+         at lambda_method15(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+         at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.Double]' to type 'System.Collections.Generic.IList`1[System.Double]'.
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfStructsReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+   at lambda_method15(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ConsoleApp.Program.Main() in C:\Users\ravindUwU\Projects\dotnet-efcore-35568\ConsoleApp\Program.cs:line 90
+
+SELECT e.Id, setOfString
+info: 3/02/2025 18:21:46.147 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (0ms) [Parameters=[@__setOfString_0='?' (Size = 8)], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id" AS "Id", @__setOfString_0 AS "setOfString"
+      FROM "entity" AS "e"
+fail: 3/02/2025 18:21:46.156 CoreEventId.QueryIterationFailed[10100] (Microsoft.EntityFrameworkCore.Query)
+      An exception occurred while iterating over the results of a query for context type 'ConsoleApp.Db'.
+      System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.String]' to type 'System.Collections.Generic.IList`1[System.String]'.
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfReferencesReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+         at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+         at lambda_method20(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+         at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.HashSet`1[System.String]' to type 'System.Collections.Generic.IList`1[System.String]'.
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonCollectionOfReferencesReaderWriter`2.FromJsonTyped(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter`1.FromJson(Utf8JsonReaderManager& manager, Object existingObject)
+   at Microsoft.EntityFrameworkCore.Storage.Json.JsonValueReaderWriter.FromJsonString(String json, Object existingObject)
+   at lambda_method20(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ConsoleApp.Program.Main() in C:\Users\ravindUwU\Projects\dotnet-efcore-35568\ConsoleApp\Program.cs:line 101
+
+C:\Users\ravindUwU\Projects\dotnet-efcore-35568\ConsoleApp\bin\Debug\net9.0\ConsoleApp.exe (process 46348) exited with code 0 (0x0).
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .

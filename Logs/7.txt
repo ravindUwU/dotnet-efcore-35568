@@ -1,0 +1,43 @@
+SQLite: Microsoft.Data.Sqlite, Version=7.0.20.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+EF Core: Microsoft.EntityFrameworkCore, Version=7.0.20.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+EF Core SQLite: Microsoft.EntityFrameworkCore.Sqlite, Version=7.0.20.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+info: 3/02/2025 18:22:54.255 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (59ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP TABLE IF EXISTS entity;
+      CREATE TABLE IF NOT EXISTS entity (id INT NOT NULL PRIMARY KEY);
+
+      INSERT INTO entity (id) VALUES (1);
+      INSERT INTO entity (id) VALUES (2);
+      INSERT INTO entity (id) VALUES (3);
+
+SELECT e.Id
+info: 3/02/2025 18:22:54.370 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id" AS "Id"
+      FROM "entity" AS "e"
+[{"Id":1},{"Id":2},{"Id":3}]
+
+SELECT e.Id, setOfInt
+info: 3/02/2025 18:22:54.443 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id"
+      FROM "entity" AS "e"
+[{"Id":1,"setOfInt":[1337]},{"Id":2,"setOfInt":[1337]},{"Id":3,"setOfInt":[1337]}]
+
+SELECT e.Id, setOfDouble
+info: 3/02/2025 18:22:54.449 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id"
+      FROM "entity" AS "e"
+[{"Id":1,"setOfDouble":[1337]},{"Id":2,"setOfDouble":[1337]},{"Id":3,"setOfDouble":[1337]}]
+
+SELECT e.Id, setOfString
+info: 3/02/2025 18:22:54.457 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command)
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "e"."id"
+      FROM "entity" AS "e"
+[{"Id":1,"setOfString":["1337"]},{"Id":2,"setOfString":["1337"]},{"Id":3,"setOfString":["1337"]}]
+
+C:\Users\ravindUwU\Projects\dotnet-efcore-35568\ConsoleApp\bin\Debug\net9.0\ConsoleApp.exe (process 16280) exited with code 0 (0x0).
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .

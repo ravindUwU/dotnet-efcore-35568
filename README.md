@@ -7,3 +7,5 @@
   version as well.
 
 - Change to use EF Core 7, re-run to notice that all queries work.
+
+- [Logs](./Logs/) attached.
